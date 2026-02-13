@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  app:
+    image: dnmgithbuactionsdemo:latest
+    container_name: dnmdemo
+    restart: always
+    ports:
+      - "80:8080"
