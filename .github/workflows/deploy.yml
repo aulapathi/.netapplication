@@ -12,23 +12,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout source code
+      # Checkout source code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Build Docker image
+      # Build Docker image
       - name: Build Docker image
         run: docker build -t dnmgithbuactionsdemo:latest .
 
-      # 3️⃣ Save Docker image to tar file
+      # Save Docker image to tar file
       - name: Save Docker image
         run: docker save dnmgithbuactionsdemo:latest -o app.tar
 
-      # 4️⃣ Fix permissions (VERY IMPORTANT)
+      # Fix permissions (VERY IMPORTANT)
       - name: Fix tar file permissions
         run: chmod 644 app.tar
 
-      # 5️⃣ Create remote directory if not exists
+      # Create remote directory if not exists
       - name: Create app directory on EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -38,7 +38,7 @@ jobs:
           script: |
             mkdir -p /home/ec2-user/app
 
-      # 6️⃣ Copy files to EC2
+      # Copy files to EC2
       - name: Copy files to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -49,7 +49,7 @@ jobs:
           target: "/home/ec2-user/app"
           overwrite: true
 
-      # 7️⃣ Deploy on EC2
+      # Deploy on EC2
       - name: Deploy application on EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
