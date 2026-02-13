@@ -1,0 +1,13 @@
+bin/
+obj/
+*.user
+*.suo
+*.swp
+*.log
+*.tmp
+.vscode/
+.git/
+.gitignore
+.gitattributes
+*.md
+``
